@@ -34,9 +34,9 @@ bot = Client(
     bot_token=BOT_TOKEN
 )
 
-my_name = ""
+#my_name = ""
 
-centered_text = "".center(40)
+#centered_text = "".center(40)
 
 cookies_file_path = os.getenv("COOKIES_FILE_PATH", "youtube_cookies.txt")
 
@@ -147,19 +147,14 @@ async def start(client: Client, msg: Message):
         "Progress: [🟨🟨🟨🟨🟨🟨🟨⬜⬜] 75%\n\n"
     )
 
+    import asyncio
+
+async def some_function(start_message, msg):
     await asyncio.sleep(1)
     await start_message.edit_text(
         Data.START.format(msg.from_user.mention) +
-        "Checking status Ok... \n\n I Am A Bot For Download Files From Your **.TXT** File And Then Upload That File On Telegram So Basically If You Want To Use Me First Send Me \n/rajesh\n/mahar\n/upload\n/txt\n/txt1\nCommand And Then Follow Few Steps..\n\nUse /stop to stop any ongoing task **Bot Made BY Rajesh Mahar 🕊️🕊️**🔍\n\n"
-        "Progress:[🟩🟩🟩🟩🟩🟩🟩🟩🟩] 100%\n\n", reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("✜ Join Update Channel✜" ,url=f"https://t.me/+T4CxZVremWUzZmI1") ],
-                    [
-                    InlineKeyboardButton("✜ Rajesh R Mahar ✜" ,url="https://t.me/rajrmahar") ],
-                    [
-                    InlineKeyboardButton("FOLLOW " ,url="https://www.instagram.com/rajrmahar") ]                               
-            ])
+        "Checking status Ok... \n\n I Am A Bot For Download Files From Your **.TXT** File And Then Upload That File On Telegram So Basically If You Want To Use Me First Send Me \n/upload\nCommand And Then Follow Few Steps..\n\nUse /stop to stop any ongoing task **\n"
+        "Progress:[🟩🟩🟩🟩🟩🟩🟩🟩🟩] 100%\n\n"
     )
 
 @bot.on_message(filters.command(["stop"]) )
@@ -168,7 +163,7 @@ async def restart_handler(_, m):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-@bot.on_message(filters.command(["Rajesh","upload"]) )
+@bot.on_message(filters.command(["upload"]) )
 async def txt_handler(bot: Client, m: Message):
     editable = await m.reply_text(f"**Send me the TXT file and wait.**")
     input: Message = await bot.listen(editable.chat.id)
@@ -229,7 +224,7 @@ async def txt_handler(bot: Client, m: Message):
     except Exception:
             res = "UN"
     
-    await editable.edit("**Enter Your Name or send '1' for use default.\n Eg : Rajesh Mahar 🕊️🕊️**")
+    await editable.edit("**Enter Your Name or send '1' for use default.**")
     input3: Message = await bot.listen(editable.chat.id)
     raw_text3 = input3.text
     await input3.delete(True)
@@ -371,8 +366,8 @@ async def txt_handler(bot: Client, m: Message):
 
             try:  
                 
-                cc = f'**🎞️ VID_ID: {str(count).zfill(3)}\n\n📝 Title: {name1}.mkv**\n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n**📥 Extracted By** : **{CR}**'
-                cc1 = f'**📁 PDF_ID: {str(count).zfill(3)}\n\n📝 Title: {name1}.pdf**\n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n**📥 Extracted By** : **{CR}**'
+                cc = f'**🎞️ VID_ID: {str(count).zfill(3)}\n\n📝 Title: {name1}.mkv**\n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n'
+                cc1 = f'**📁 PDF_ID: {str(count).zfill(3)}\n\n📝 Title: {name1}.pdf**\n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n'
                     
                 
                 if "drive" in url:
@@ -455,14 +450,14 @@ async def txt_handler(bot: Client, m: Message):
 
 # Advance
 
-@bot.on_message(filters.command(["mahar"]) )
+@bot.on_message(filters.command(["upload"]) )
 async def txt_handler(bot: Client, m: Message):
     editable = await m.reply_text(f"**📁Send me the TXT file and wait.**")
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
     file_name, ext = os.path.splitext(os.path.basename(x))
-    credit = f"Rajesh Mahar 🕊️🕊️"
+#   credit = f"Rajesh Mahar 🕊️🕊️"
     
     try:    
         with open(x, "r") as f:
@@ -612,8 +607,8 @@ async def txt_handler(bot: Client, m: Message):
 
             try:  
                 
-                cc = f'**🎞️ VID_ID: {str(count).zfill(3)}.\n\nTitle: {name1}.mkv**\n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n**📥 Extracted By** : **{CR}**'
-                cc1 = f'**📁 PDF_ID: {str(count).zfill(3)}.\n\nTitle: {name1}.pdf**\n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n**📥 Extracted By** : **{CR}**'
+                cc = f'**🎞️ VID_ID: {str(count).zfill(3)}.\n\nTitle: {name1}.mkv**\n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\n**'
+                cc1 = f'**📁 PDF_ID: {str(count).zfill(3)}.\n\nTitle: {name1}.pdf**\n\n<pre><code>🔖 Batch Name: {b_name}</code></pre>\n\**'
                     
                 
                 if "drive" in url:
@@ -696,7 +691,7 @@ async def txt_handler(bot: Client, m: Message):
 
 # Ankitshakya
 
-@bot.on_message(filters.command(["rajesh"]))
+@bot.on_message(filters.command(["upload"]))
 async def txt_handler(bot: Client, m: Message):
     editable = await m.reply_text(f"**🔹Send me the TXT file and wait.**")
     input: Message = await bot.listen(editable.chat.id)
